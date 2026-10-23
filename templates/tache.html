@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titre %}{{ tache.titre }}{% endblock %}
+{% block contenu %}
+  <h1>{{ tache.titre }}</h1>
+  <p>Priorité : {{ tache.priorite }}</p>
+  <p>État : {{ "terminée" if tache.terminee else "à faire" }}</p>
+  <div class="actions">
+    <form class="action" method="post"
+          action="{{ url_for('basculer_tache', id=tache.id) }}">
+      <button type="submit">
+        {{ "Réactiver" if tache.terminee else "Terminer" }}
+      </button>
+    </form>
+    <form class="action" method="post"
+          action="{{ url_for('supprimer_tache', id=tache.id) }}">
+      <button type="submit">Supprimer</button>
+    </form>
+  </div>
+  <p><a href="{{ url_for('index') }}">← Retour à la liste</a></p>
+{% endblock %}

@@ -1,0 +1,8 @@
+body { font-family: sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+nav { margin-bottom: 1rem; }
+.flash { background: #e6f4ea; border-left: 4px solid #2e7d32; padding: .5rem .75rem; }
+.erreur { background: #fdecea; border-left: 4px solid #c62828; padding: .5rem .75rem; }
+.filtres a.actif { font-weight: bold; }
+small { color: #666; }
+.action { display: inline; }
+button { cursor: pointer; }

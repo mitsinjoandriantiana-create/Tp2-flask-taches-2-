@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contenu %}
+  <h1>Essai de rechargement</h1>
+  <p>Tâches restantes : {{ restantes }}</p>
+
+  <p class="filtres">
+    <a href="{{ url_for('index', filtre='toutes') }}"{% if filtre == 'toutes' %} class="actif"{% endif %}>Toutes</a> |
+    <a href="{{ url_for('index', filtre='actives') }}"{% if filtre == 'actives' %} class="actif"{% endif %}>Actives</a> |
+    <a href="{{ url_for('index', filtre='terminees') }}"{% if filtre == 'terminees' %} class="actif"{% endif %}>Terminées</a>
+  </p>
+
+  <ul>
+    {% for t in taches %}
+      <li>
+        {{ loop.index }}.
+        {% if t.terminee %}<s>{{ t.titre }}</s>{% else %}{{ t.titre }}{% endif %}
+        <small>(priorité : {{ t.priorite }})</small>
+        <a href="{{ url_for('tache', id=t.id) }}">détail</a>
+        <form class="action" method="post"
+              action="{{ url_for('basculer_tache', id=t.id) }}">
+          <button type="submit">
+            {{ "Réactiver" if t.terminee else "Terminer" }}
+          </button>
+        </form>
+        <form class="action" method="post"
+              action="{{ url_for('supprimer_tache', id=t.id) }}">
+          <button type="submit">Supprimer</button>
+        </form>
+      </li>
+    {% else %}
+      <li>Aucune tâche à afficher.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

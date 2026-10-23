@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titre %}Nouvelle tâche{% endblock %}
+{% block contenu %}
+  <h1>Nouvelle tâche</h1>
+
+  {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+
+  <form method="post">
+    <input name="titre" placeholder="Titre" maxlength="80" required
+           value="{{ titre }}">
+    <select name="priorite">
+      {% for p in priorites %}
+        <option value="{{ p }}"{% if p == priorite %} selected{% endif %}>{{ p }}</option>
+      {% endfor %}
+    </select>
+    <button>Ajouter</button>
+  </form>
+{% endblock %}
